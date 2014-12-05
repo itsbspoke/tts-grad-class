@@ -4,5 +4,11 @@ class Event < ActiveRecord::Base
   validates :title, presence: true  
   validates :description, presence: true    
   #validates :starts_at, presence: true
-  #validates :ends_at, presence: true  
+  #validates :ends_at, presence: true
+  
+  # true, false
+  def in_past?
+    starts_at < Time.now 
+  end
+
 end

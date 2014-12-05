@@ -7,3 +7,4 @@ def login(user=nil)
     click_button 'Log in'
   end
 end
+
