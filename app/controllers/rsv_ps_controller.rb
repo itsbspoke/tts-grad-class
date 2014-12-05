@@ -1,5 +1,7 @@
 class RsvPsController < ApplicationController
+  before_action :set_event
   before_action :set_rsvp, only: [:show, :edit, :update, :destroy]
+  before_action :authenticate_user!, :except => [:show, :index]  
 
   respond_to :html
 
@@ -22,8 +24,10 @@ class RsvPsController < ApplicationController
 
   def create
     @rsvp = Rsvp.new(rsvp_params)
+    @rsvp.event = @event
+    @rsvp.user = current_user
     @rsvp.save
-    respond_with(@rsvp)
+    redirect_to @event
   end
 
   def update
@@ -37,6 +41,10 @@ class RsvPsController < ApplicationController
   end
 
   private
+    def set_event
+      @event = Event.find(params[:event_id])
+    end  
+  
     def set_rsvp
       @rsvp = Rsvp.find(params[:id])
     end

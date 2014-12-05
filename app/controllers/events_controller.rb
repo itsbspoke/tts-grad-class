@@ -10,6 +10,8 @@ class EventsController < ApplicationController
   end
 
   def show
+    @rsvp = Rsvp.new(user: current_user)
+    @rsvp.event = @event
     respond_with(@event)
   end
 

@@ -1,7 +1,8 @@
 Rails.application.routes.draw do
-  resources :rsvps
 
-  resources :events
+  resources :events do
+    resources :rsvps, controller: "rsv_ps"   
+  end
 
   resources :startup_resources
 
