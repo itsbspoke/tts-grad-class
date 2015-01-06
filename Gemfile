@@ -49,6 +49,8 @@ gem "bootstrap_form"
 gem "kaminari"
 gem "foreigner"
 gem "rolify"
+gem 'paperclip', '~> 4.2.1'
+
 group :development, :test do
   gem "rspec-rails"
   gem "guard-rspec"
