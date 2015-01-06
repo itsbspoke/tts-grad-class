@@ -50,6 +50,7 @@ gem "kaminari"
 gem "foreigner"
 gem "rolify"
 gem 'paperclip', '~> 4.2.1'
+gem 'aws-sdk'
 
 group :development, :test do
   gem "rspec-rails"
