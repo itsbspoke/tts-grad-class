@@ -55,6 +55,10 @@ gem 'aws-sdk'
 gem 'stripe', '~> 1.17.0'
 gem 'httparty'
 
+group :development do
+  gem 'stripe-ruby-mock'
+end
+
 group :development, :test do
   gem "rspec-rails"
   gem "guard-rspec"
@@ -69,6 +73,7 @@ group :test do
   gem "launchy"
   gem "database_cleaner"
   gem "codeclimate-test-reporter", require: nil
+  gem "mocha"
 end
 
 gem "pg"
