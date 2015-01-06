@@ -1,4 +1,5 @@
 source 'https://rubygems.org'
+source 'https://code.stripe.com'
 
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
@@ -51,6 +52,8 @@ gem "foreigner"
 gem "rolify"
 gem 'paperclip', '~> 4.2.1'
 gem 'aws-sdk'
+gem 'stripe', '~> 1.17.0'
+gem 'httparty'
 
 group :development, :test do
   gem "rspec-rails"
