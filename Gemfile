@@ -53,6 +53,8 @@ gem 'aws-sdk'
 gem 'stripe', '~> 1.17.0'
 gem 'httparty'
 
+gem 'rails_12factor', group: :production
+
 group :development do
   gem 'stripe-ruby-mock'
 end
