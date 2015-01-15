@@ -1,7 +1,7 @@
 require 'rails_helper'
 
 RSpec.describe Group, :type => :model do
-  describe "validation", focused: true do
+  describe "validation" do
     subject{ build(:group) }
     it{should be_valid}
     it "should require a name" do

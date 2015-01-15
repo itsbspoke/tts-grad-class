@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150115220631) do
+ActiveRecord::Schema.define(version: 20150115222425) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -30,6 +30,13 @@ ActiveRecord::Schema.define(version: 20150115220631) do
     t.string   "name",                         null: false
     t.integer  "owner_id",                     null: false
     t.integer  "membership_count", default: 1, null: false
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "memberships", force: true do |t|
+    t.integer  "user_id",    null: false
+    t.integer  "group_id",   null: false
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -109,6 +116,9 @@ ActiveRecord::Schema.define(version: 20150115220631) do
   add_foreign_key "events", "users", name: "events_user_id_fk"
 
   add_foreign_key "groups", "users", name: "groups_owner_id_fk", column: "owner_id"
+
+  add_foreign_key "memberships", "groups", name: "memberships_group_id_fk"
+  add_foreign_key "memberships", "users", name: "memberships_user_id_fk"
 
   add_foreign_key "startup_resources", "users", name: "startup_resources_user_id_fk"
 
