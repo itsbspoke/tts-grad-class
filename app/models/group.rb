@@ -3,4 +3,6 @@ class Group < ActiveRecord::Base
   validates :owner, presence: true
   validates :name, presence: true
   
+  has_many :memberships, counter_cache: true
+  has_many :events
 end
