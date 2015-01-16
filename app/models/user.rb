@@ -11,6 +11,6 @@ class User < ActiveRecord::Base
   has_many :groups, through: :memberships
   
   def upcoming_events
-    Event.from_group(u.groups).upcoming.most_recent    
+    Event.from_group(self.groups).upcoming.most_recent    
   end
 end
