@@ -9,4 +9,8 @@ class User < ActiveRecord::Base
   has_many :owned_groups, class_name: "Group"
   has_many :memberships
   has_many :groups, through: :memberships
+  
+  def upcoming_events
+    Event.from_group(u.groups).upcoming.most_recent    
+  end
 end
