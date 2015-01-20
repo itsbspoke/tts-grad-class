@@ -1,8 +1,8 @@
 <p id="notice"><%= notice %></p>
 
 <p>
-  <strong>User:</strong>
-  <%= @event.user_id %>
+  <strong>Host:</strong>
+  <%= @event.user.email %>
 </p>
 
 <p>
@@ -24,6 +24,10 @@
   <strong>Description:</strong>
   <%= @event.description %>
 </p>
+
+<strong><%= @event.rsvp_count %> RSVP</strong>
+
+<%= render partial: "/rsv_ps/form" %>
 
 <%= link_to 'Edit', edit_event_path(@event) %> |
 <%= link_to 'Back', events_path %>

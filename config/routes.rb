@@ -14,6 +14,10 @@ Rails.application.routes.draw do
 
   resources :events
 
+  resources :events do
+    resources :rsvps, controller: "rsv_ps"   
+  end
+
   resources :startup_resources
 
   root to: 'welcome#index'

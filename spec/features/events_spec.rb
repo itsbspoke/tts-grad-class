@@ -20,7 +20,7 @@ describe "Events", :type => :feature do
   end
   
   it "let me create one" do
-    login    
+    login
     visit "/"
     click_link "Events"
     click_link 'New Event'

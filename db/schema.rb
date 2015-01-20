@@ -69,6 +69,14 @@ ActiveRecord::Schema.define(version: 20150115223842) do
   add_index "roles", ["name", "resource_type", "resource_id"], name: "index_roles_on_name_and_resource_type_and_resource_id", using: :btree
   add_index "roles", ["name"], name: "index_roles_on_name", using: :btree
 
+  create_table "rsvps", force: true do |t|
+    t.integer  "user_id"
+    t.integer  "event_id"
+    t.integer  "guest_count", default: 0
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
   create_table "sales", force: true do |t|
     t.string   "email"
     t.string   "guid"
@@ -120,6 +128,9 @@ ActiveRecord::Schema.define(version: 20150115223842) do
 
   add_foreign_key "memberships", "groups", name: "memberships_group_id_fk"
   add_foreign_key "memberships", "users", name: "memberships_user_id_fk"
+
+  add_foreign_key "rsvps", "events", name: "rsvps_event_id_fk"
+  add_foreign_key "rsvps", "users", name: "rsvps_user_id_fk"
 
   add_foreign_key "startup_resources", "users", name: "startup_resources_user_id_fk"
 
