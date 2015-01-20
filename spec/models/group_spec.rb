@@ -11,7 +11,7 @@ RSpec.describe Group, :type => :model do
       expect( build(:group, owner: nil) ).not_to be_valid
     end
   end
-  describe "unique slug", focus: true do
+  describe "unique slug" do
     it "should generate a slug when saved" do
       group = create(:group)
       expect( group.slug ).not_to be_nil
@@ -23,4 +23,6 @@ RSpec.describe Group, :type => :model do
       expect( group_two.slug ).not_to eq(group.slug)
     end
   end
+  
+  
 end
