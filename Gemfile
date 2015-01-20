@@ -1,10 +1,9 @@
 source 'https://rubygems.org'
+source 'https://code.stripe.com'
 
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '4.1.7'
-# Use sqlite3 as the database for Active Record
-gem 'sqlite3'
 # Use SCSS for stylesheets
 gem 'sass-rails', '~> 4.0.3'
 # Use Uglifier as compressor for JavaScript assets
@@ -49,6 +48,17 @@ gem "bootstrap_form"
 gem "kaminari"
 gem "foreigner"
 gem "rolify"
+gem 'paperclip', '~> 4.2.1'
+gem 'aws-sdk'
+gem 'stripe', '~> 1.17.0'
+gem 'httparty'
+
+gem 'rails_12factor', group: :production
+
+group :development do
+  gem 'stripe-ruby-mock'
+end
+
 group :development, :test do
   gem "rspec-rails"
   gem "guard-rspec"
@@ -63,6 +73,7 @@ group :test do
   gem "launchy"
   gem "database_cleaner"
   gem "codeclimate-test-reporter", require: nil
+  gem "mocha"
 end
 
 gem "pg"
