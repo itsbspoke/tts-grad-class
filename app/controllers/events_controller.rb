@@ -2,6 +2,7 @@ class EventsController < ApplicationController
   before_action :set_event, only: [:show, :edit, :update, :destroy]
   before_action :authenticate_user!, :except => [:show, :index]
 
+  before_action :load_group
   respond_to :html
 
   def index
@@ -44,8 +45,14 @@ class EventsController < ApplicationController
     def set_event
       @event = Event.find(params[:id])
     end
+    
+    def load_group
+      if params[:group_id]
+        @group = Group.find(params[:group_id])
+      end
+    end
 
     def event_params
-      params.require(:event).permit(:user_id, :starts_at, :ends_at, :title, :description)
+      params.require(:event).permit(:group_id, :starts_at, :ends_at, :title, :description)
     end
 end

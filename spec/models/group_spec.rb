@@ -27,12 +27,12 @@ RSpec.describe Group, :type => :model do
     it "should allow for a free one" do
       group = create(:group)
       expect( group.membership_plans ).to be_empty
-      expect( group.free ).to be_true
+      expect( group.free ).to be true
     end
     it "should allow for a simple paid plan" do
       group = create(:paid_group)
       expect( group.membership_plans ).not_to be_empty
-      expect( group.free ).not_to be_true
+      expect( group.free ).not_to be true
     end
   end
   

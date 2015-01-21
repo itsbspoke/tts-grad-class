@@ -7,7 +7,7 @@
 
 <p>
   <strong>Owner:</strong>
-  <%= @group.owner_id %>
+  <%= @group.owner.email %>
 </p>
 
 <p>
@@ -15,5 +15,7 @@
   <%= @group.membership_count %>
 </p>
 
-<%= link_to 'Edit', edit_group_path(@group) %> |
-<%= link_to 'Back', groups_path %>
+<% if @group.owner == current_user %>
+  <%= link_to "Create event", new_group_event_path(@group) %>
+<% end %>
+

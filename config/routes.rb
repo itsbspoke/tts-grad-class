@@ -1,7 +1,9 @@
 Rails.application.routes.draw do
   resources :memberships
 
-  resources :groups
+  resources :groups do
+    resources :events    
+  end
 
   resources :sales
 
@@ -11,8 +13,6 @@ Rails.application.routes.draw do
   post '/buy/:permalink', to: 'transactions#create',   as: :buy
   get  '/pickup/:guid',   to: 'transactions#pickup',   as: :pickup
   get  '/download/:guid', to: 'transactions#download', as: :download
-
-  resources :events
 
   resources :events do
     resources :rsvps, controller: "rsv_ps"   
