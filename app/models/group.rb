@@ -5,4 +5,7 @@ class Group < ActiveRecord::Base
   
   has_many :memberships, counter_cache: true
   has_many :events
+  
+  extend FriendlyId  
+  friendly_id :name, use: :slugged  
 end

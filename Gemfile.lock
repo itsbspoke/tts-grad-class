@@ -96,6 +96,8 @@ GEM
       thor (~> 0.19.1)
     forgery (0.6.0)
     formatador (0.2.5)
+    friendly_id (5.1.0)
+      activerecord (>= 4.0.0)
     guard (2.8.2)
       formatador (>= 0.2.4)
       listen (~> 2.7)
@@ -291,6 +293,7 @@ DEPENDENCIES
   foreigner
   foreman
   forgery
+  friendly_id (~> 5.1.0)
   guard-bundler
   guard-rspec
   httparty
