@@ -27,7 +27,12 @@
 
 <strong><%= @event.rsvp_count %> RSVP</strong>
 
+<% if can_haz_rsvp?(@event) %>
 <%= render partial: "/rsv_ps/form" %>
+<% else %>
+<form id="new_membership">
+</form>
+<% end %>
 
 <%= link_to 'Edit', edit_event_path(@event) %> |
 <%= link_to 'Back', events_path %>

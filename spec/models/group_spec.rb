@@ -11,6 +11,14 @@ RSpec.describe Group, :type => :model do
       expect( build(:group, owner: nil) ).not_to be_valid
     end
   end
+  
+  describe "members" do
+    it "should identify members", focus: true do
+      m = create(:membership)
+      expect( m.group.members ).to include(m.user)
+      
+    end
+  end
   describe "unique slug" do
     it "should generate a slug when saved" do
       group = create(:group)

@@ -4,6 +4,7 @@ class Group < ActiveRecord::Base
   validates :name, presence: true
   
   has_many :memberships, counter_cache: true
+  has_many :members, through: :memberships, source: :user
   has_many :events
   
   extend FriendlyId  

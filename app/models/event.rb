@@ -16,6 +16,17 @@ class Event < ActiveRecord::Base
   def rsvp_count
     rsvps.count
   end
+  
+  def open_to(user)
+    if user.nil?
+      false
+    elsif group.nil? || group.free
+      true
+    else
+      #binding.pry
+      group.members.include?(user)
+    end
+  end
 
   #validates :ends_at, presence: true
   
