@@ -8,3 +8,8 @@ def login(user=nil)
   end
 end
 
+def visit_event(event)
+  click_link "Events"
+  click_link event.title   
+end
+

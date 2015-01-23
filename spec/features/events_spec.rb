@@ -33,4 +33,5 @@ describe "Events", :type => :feature do
     end
     expect(page).to have_content("Introducing")
   end
+
 end

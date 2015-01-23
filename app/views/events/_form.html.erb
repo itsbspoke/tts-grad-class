@@ -12,10 +12,6 @@
   <% end %>
 
   <div class="field">
-    <%= f.label :user_id %><br>
-    <%= f.number_field :user_id %>
-  </div>
-  <div class="field">
     <%= f.label :starts_at %><br>
     <%= f.datetime_select :starts_at %>
   </div>
@@ -31,6 +27,9 @@
     <%= f.label :description %><br>
     <%= f.text_area :description %>
   </div>
+	<% if @group %>
+ 	 <%= f.hidden_field :group_id, value: @group.id %>	
+	<% end %>
   <div class="actions">
     <%= f.submit %>
   </div>

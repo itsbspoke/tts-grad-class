@@ -9,7 +9,7 @@ class Rsvp < ActiveRecord::Base
   validates :guest_count, inclusion: { in: 0..9 }
   
   def only_future_events
-    if event.in_past?
+    if event && event.in_past?
       errors.add(:event, "must be in the future")
     end
   end

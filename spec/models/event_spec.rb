@@ -31,4 +31,31 @@ RSpec.describe Event, :type => :model do
         starts_at: 2.weeks.ago)).to be_in_past
     end
   end
+  
+  context "RSVP eligibility" do
+    context "global events" do
+      let(:event){ create(:event) }
+      it "should be open to all" do
+        expect(event.open_to(build(:user))).to be true
+      end
+    end
+    context "group events" do
+      it "should be open to all when the group is free" do
+        group = create(:group)
+        group_event = create(:event, group: group)
+        expect(group_event.open_to(build(:user))).to be true
+      end
+      it "should not be open to all when the group is paid" do
+        group = create(:paid_group)
+        group_event = create(:event, group: group)
+        expect(group_event.open_to(build(:user))).not_to be true
+      end
+      it "should be open to paid members" do
+        group = create(:paid_group)
+        group_event = create(:event, group: group)
+        membership = create(:membership, group: group)
+        expect(group_event.open_to(membership.user)).to be true
+      end
+    end
+  end  
 end

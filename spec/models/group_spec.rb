@@ -9,6 +9,41 @@ RSpec.describe Group, :type => :model do
     end
     it "should require an owner" do
       expect( build(:group, owner: nil) ).not_to be_valid
-    end    
+    end
   end
+  
+  describe "members" do
+    it "should identify members", focus: true do
+      m = create(:membership)
+      expect( m.group.members ).to include(m.user)
+      
+    end
+  end
+  describe "unique slug" do
+    it "should generate a slug when saved" do
+      group = create(:group)
+      expect( group.slug ).not_to be_nil
+    end
+    it "should prevent slug conflict" do
+      group = create(:group)
+      group_two = create(:group)
+      expect( group_two.slug ).not_to be_nil
+      expect( group_two.slug ).not_to eq(group.slug)
+    end
+  end
+  describe "membership plans" do
+    it "should allow for a free one" do
+      group = create(:group)
+      expect( group.membership_plans ).to be_empty
+      expect( group.free ).to be true
+    end
+    it "should allow for a simple paid plan" do
+      group = create(:paid_group)
+      group.reload
+      expect( group.membership_plans ).not_to be_empty
+      expect( group.free ).not_to be true
+    end
+  end
+  
+  
 end
