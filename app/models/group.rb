@@ -25,4 +25,8 @@ class Group < ActiveRecord::Base
     end
   end
   
+  def default_plan
+    membership_plans.first
+  end
+  
 end

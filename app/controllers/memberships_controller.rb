@@ -1,4 +1,10 @@
 class MembershipsController < ApplicationController
+  
+  include Payola::StatusBehavior
+  
+  before_action :authenticate_user!, except: [:index, :show]
+    
+  before_action :set_group
   before_action :set_membership, only: [:show, :edit, :update, :destroy]
 
   respond_to :html
@@ -21,9 +27,19 @@ class MembershipsController < ApplicationController
   end
 
   def create
-    @membership = Membership.new(membership_params)
-    @membership.save
-    respond_with(@membership)
+    # do any required setup here, including finding or creating the owner object
+    member = current_user # this is just an example for Devise
+
+    # set your plan in the params hash
+    params[:plan] = @group.default_plan
+    params[:amount] = params[:plan].amount
+
+    # call Payola::CreateSubscription
+    subscription = Payola::CreateSubscription.call(params, member)
+    Membership.create(user: member, group: @group)
+
+    # Render the status json that Payola's javascript expects
+    render_payola_status(subscription)
   end
 
   def update
@@ -37,6 +53,10 @@ class MembershipsController < ApplicationController
   end
 
   private
+    def set_group
+      @group = Group.friendly.find(params[:group_id])
+    end
+
     def set_membership
       @membership = Membership.find(params[:id])
     end

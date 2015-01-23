@@ -30,8 +30,26 @@
 <% if can_haz_rsvp?(@event) %>
 <%= render partial: "/rsv_ps/form" %>
 <% else %>
-<form id="new_membership">
-</form>
+
+<%= form_for @membership, id: "new_membership", url: group_memberships_path(@group), method: :post, html: {
+      class: 'payola-onestep-subscription-form',
+      'data-payola-base-path' => '/payola',
+      'data-payola-plan-type' => @group.default_plan.plan_class,
+      'data-payola-plan-id' => @group.default_plan.id
+  } do |f| %>
+  <span class="payola-payment-error"></span>
+  Email:<br>
+  <input type="email" name="stripeEmail" data-payola="email"></input><br>
+  Card Number<br>
+  <input type="text" data-stripe="number"></input><br>
+  Exp Month<br>
+  <input type="text" data-stripe="exp_month"></input><br>
+  Exp Year<br>
+  <input type="text" data-stripe="exp_year"></input><br>
+  CVC<br>
+  <input type="text" data-stripe="cvc"></input><br>
+  <input type="submit"></input>
+<% end %>	
 <% end %>
 
 <%= link_to 'Edit', edit_event_path(@event) %> |

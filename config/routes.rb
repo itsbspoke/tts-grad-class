@@ -1,8 +1,8 @@
 Rails.application.routes.draw do
   mount Payola::Engine => '/payola', as: :payola
-  resources :memberships
 
   resources :groups do
+    resources :memberships    
     resources :events    
   end
 

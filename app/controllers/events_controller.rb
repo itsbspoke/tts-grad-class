@@ -13,6 +13,7 @@ class EventsController < ApplicationController
   def show
     @rsvp = Rsvp.new(user: current_user)
     @rsvp.event = @event
+    @membership = Membership.new(user: current_user)
     respond_with(@event)
   end
 
