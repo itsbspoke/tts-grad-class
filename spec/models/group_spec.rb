@@ -31,6 +31,7 @@ RSpec.describe Group, :type => :model do
     end
     it "should allow for a simple paid plan" do
       group = create(:paid_group)
+      group.reload
       expect( group.membership_plans ).not_to be_empty
       expect( group.free ).not_to be true
     end
