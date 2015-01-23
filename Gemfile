@@ -53,6 +53,7 @@ gem 'aws-sdk'
 gem 'stripe', '~> 1.17.0'
 gem 'httparty'
 gem 'friendly_id', '~> 5.1.0'
+gem 'payola-payments'
 
 gem 'rails_12factor', group: :production
 

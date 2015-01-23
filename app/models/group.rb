@@ -7,5 +7,7 @@ class Group < ActiveRecord::Base
   has_many :events
   
   extend FriendlyId  
-  friendly_id :name, use: :slugged  
+  friendly_id :name, use: :slugged
+  
+  has_many :membership_plans
 end
